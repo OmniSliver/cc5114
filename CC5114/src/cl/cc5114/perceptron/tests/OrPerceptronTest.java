@@ -8,21 +8,21 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import cl.cc5114.perceptron.AndPerceptron;
+import cl.cc5114.perceptron.OrPerceptron;
 
 /**
  * @author OmniSliver
  *
  */
-public class AndPerceptronTest {
-	AndPerceptron p;
+public class OrPerceptronTest {
+	OrPerceptron p;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.p = new AndPerceptron();
+		p = new OrPerceptron();
 	}
 
 	/**
@@ -31,8 +31,9 @@ public class AndPerceptronTest {
 	@Test
 	public void testRun() {
 		assertEquals(0, p.run(0, 0));
-		assertEquals(0, p.run(0, 1));
-		assertEquals(0, p.run(1, 0));
+		assertEquals(1, p.run(0, 1));
+		assertEquals(1, p.run(1, 0));
 		assertEquals(1, p.run(1, 1));
 	}
+
 }
