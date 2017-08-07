@@ -24,7 +24,7 @@ public class Perceptron {
 	 * @param inputs The binary (0 or 1) inputs to be weighted
 	 * @return 1 if the bias plus the weighted sum of the inputs is greater than 0. Otherwise, 0.
 	 */
-	public int run(int... inputs) {
+	public int run(double... inputs) {
 		double sum = this.bias;
 		for (int i = 0; i < this.weights.length && i < inputs.length; i++) {
 			sum += inputs[i] * this.weights[i];
