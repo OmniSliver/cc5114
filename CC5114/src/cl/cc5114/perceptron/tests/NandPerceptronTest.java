@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cl.cc5114.perceptron.tests;
 
 import static org.junit.Assert.*;
@@ -10,10 +7,6 @@ import org.junit.Test;
 
 import cl.cc5114.perceptron.NandPerceptron;
 
-/**
- * @author OmniSliver
- *
- */
 public class NandPerceptronTest {
 	NandPerceptron p;
 

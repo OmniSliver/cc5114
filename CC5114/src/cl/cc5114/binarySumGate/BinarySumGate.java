@@ -1,17 +1,17 @@
-/**
- * 
- */
 package cl.cc5114.binarySumGate;
 
 import cl.cc5114.perceptron.NandPerceptron;
 
 /**
- * @author OmniSliver
- *
+ * This class has a static sum method, which performs a binary sum on two bits (0 or 1), returning the sum bit and the carry bit.
  */
 public class BinarySumGate {
-	private static final NandPerceptron nand = new NandPerceptron();
+	// The NAND gate used to build the sum gate
+	private static final NandPerceptron NAND = new NandPerceptron();
 	
+	/**
+	 * Instances of this class contain the result of the sum gate: A sum bit and a carry bit.
+	 */
 	public static class Result {
 		public int sum;
 		public int carry;
@@ -52,11 +52,11 @@ public class BinarySumGate {
 		 * Gate "c" outputs the carry bit.
 		 */
 		
-		a = nand.run(bit1, bit2);
-		b = nand.run(bit1, a);
-		c = nand.run(a, a);
-		d = nand.run(a, bit2);
-		e = nand.run(b, d);
+		a = NAND.run(bit1, bit2);
+		b = NAND.run(bit1, a);
+		c = NAND.run(a, a);
+		d = NAND.run(a, bit2);
+		e = NAND.run(b, d);
 		
 		return new Result(e, c);
 	}

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cl.cc5114.binarySumGate.tests;
 
 import static org.junit.Assert.*;
@@ -9,10 +6,6 @@ import org.junit.Test;
 
 import cl.cc5114.binarySumGate.BinarySumGate;
 
-/**
- * @author OmniSliver
- *
- */
 public class BinarySumGateTest {
 	/**
 	 * Test method for {@link cl.cc5114.binarySumGate.BinarySumGate#sum(int, int)}.
@@ -33,5 +26,4 @@ public class BinarySumGateTest {
 		assertEquals(0, sum11.sum);
 		assertEquals(1, sum11.carry);
 	}
-
 }
