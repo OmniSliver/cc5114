@@ -32,4 +32,31 @@ public class Perceptron {
 		
 		return sum > 0 ? 1 : 0;
 	}
+	
+	/**
+	 * Compares the actual output with the expected output and modifies the weights
+	 * according to the learning constant: newWeight = oldWeight +/- learningConstant * input
+	 * 
+	 * @param inputs The inputs to be weighted
+	 * @param expectedOutput The expected output
+	 * @param learningConstant The learning constant
+	 * @return The actual output before learning
+	 */
+	public int train(double[] inputs, int expectedOutput, double learningConstant) {
+		int actualOutput = this.run(inputs);
+		
+		if (actualOutput == expectedOutput) {
+			return actualOutput;
+		}
+		
+		if (actualOutput > expectedOutput) {
+			learningConstant *= -1;
+		}
+		
+		for (int i = 0; i < this.weights.length && i < inputs.length; i++) {
+			this.weights[i] += learningConstant * inputs[i];
+		}
+		
+		return actualOutput;
+	}
 }

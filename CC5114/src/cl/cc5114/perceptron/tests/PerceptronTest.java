@@ -14,6 +14,7 @@ public class PerceptronTest {
 		this.p0 = new Perceptron(0);
 		this.p1 = new Perceptron(0.2);
 		this.p2 = new Perceptron(-3, 2, 2, 0);
+		this.p3 = new Perceptron(0, 2, 2);
 	}
 
 	@Test
@@ -44,5 +45,22 @@ public class PerceptronTest {
 		assertEquals(0, this.p2.run(1, 0, 1));
 		assertEquals(1, this.p2.run(1, 1, 0));
 		assertEquals(1, this.p2.run(1, 1, 1));
+	}
+	
+	@Test
+	public void testTrain() {
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
+		assertEquals(1, this.p3.train(new double[]{0.6, 0.7}, 0, 0.1));
 	}
 }
