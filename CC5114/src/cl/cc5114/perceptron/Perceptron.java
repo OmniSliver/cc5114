@@ -11,7 +11,7 @@ public class Perceptron {
 	private double[] weights;
 	private double bias;
 	
-	public Perceptron(double[] weights, double bias) {
+	public Perceptron(double bias, double... weights) {
 		this.weights = weights;
 		this.bias = bias;
 	}
