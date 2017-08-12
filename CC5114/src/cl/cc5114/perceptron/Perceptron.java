@@ -19,6 +19,20 @@ public class Perceptron {
 	}
 	
 	/**
+	 * @return the weights
+	 */
+	public double[] getWeights() {
+		return weights;
+	}
+
+	/**
+	 * @return the bias
+	 */
+	public double getBias() {
+		return bias;
+	}
+
+	/**
 	 * Wheights the inputs and returns 0 or 1 according to their weights and the bias.
 	 * 
 	 * @param inputs The binary (0 or 1) inputs to be weighted
