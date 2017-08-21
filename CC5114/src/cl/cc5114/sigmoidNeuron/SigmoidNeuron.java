@@ -9,6 +9,7 @@ package cl.cc5114.sigmoidNeuron;
 public class SigmoidNeuron {
 	private double[] weights;
 	private double bias;
+	private double lastOutput;
 	
 	/**
 	 * @param bias The bias of the SigmoidNeuron
@@ -17,6 +18,7 @@ public class SigmoidNeuron {
 	public SigmoidNeuron(double bias, double... weights) {
 		this.weights = weights;
 		this.bias = bias;
+		this.lastOutput = Double.NaN;
 	}
 	
 	/**
@@ -45,6 +47,8 @@ public class SigmoidNeuron {
 			sum += inputs[i] * this.weights[i];
 		}
 		
-		return 1 / (1 + Math.exp(-sum));
+		this.lastOutput = 1 / (1 + Math.exp(-sum));
+		
+		return this.lastOutput;
 	}
 }
