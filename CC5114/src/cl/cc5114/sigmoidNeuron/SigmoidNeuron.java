@@ -10,6 +10,7 @@ public class SigmoidNeuron {
 	private double[] weights;
 	private double bias;
 	private double lastOutput;
+	private double delta;
 	
 	/**
 	 * @param bias The bias of the SigmoidNeuron
@@ -19,6 +20,7 @@ public class SigmoidNeuron {
 		this.weights = weights;
 		this.bias = bias;
 		this.lastOutput = Double.NaN;
+		this.delta = Double.NaN;
 	}
 	
 	/**
@@ -33,6 +35,23 @@ public class SigmoidNeuron {
 	 */
 	public double getBias() {
 		return bias;
+	}
+	
+	public double calculateAndSetDelta(double error) {
+		this.delta = error * this.getTransferDerivative();
+		return this.delta;
+	}
+	
+	public double getDelta() {
+		return this.delta;
+	}
+	
+	public double getTransferDerivative() {
+		return this.lastOutput * (1 - this.lastOutput);
+	}
+	
+	public double getLastOutput() {
+		return this.lastOutput;
 	}
 
 	/**

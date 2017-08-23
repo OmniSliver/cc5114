@@ -5,19 +5,26 @@ package cl.cc5114.neuralNetwork;
 
 import java.util.ArrayList;
 
+import cl.cc5114.neuronLayer.HiddenNeuronLayer;
 import cl.cc5114.neuronLayer.NeuronLayer;
+import cl.cc5114.neuronLayer.OutputNeuronLayer;
 
 public class NeuralNetwork {
-	private ArrayList<NeuronLayer> layers;
+	private ArrayList<HiddenNeuronLayer> hiddenLayers;
+	private OutputNeuronLayer outputLayer;
 	private int numberOfInputs;
 	
-	public NeuralNetwork(int numberOfInputs, int[] numberOfNeuronPerLayer) {
+	public NeuralNetwork(int numberOfInputs, int[] numberOfNeuronsPerLayer) {
 		this.numberOfInputs = numberOfInputs;
-		layers = new ArrayList<>(numberOfNeuronPerLayer.length);
-		layers.add(new NeuronLayer(numberOfNeuronPerLayer[0], numberOfInputs));
-		for (int i = 1; i < numberOfNeuronPerLayer.length; i++) {
-			layers.add(new NeuronLayer(numberOfNeuronPerLayer[i], numberOfNeuronPerLayer[i-1]));
+		int nextLayerNumberOfInputs = numberOfInputs;
+		hiddenLayers = new ArrayList<>(numberOfNeuronsPerLayer.length - 1);
+		
+		for (int i = 0; i < numberOfNeuronsPerLayer.length - 1; i++) {
+			hiddenLayers.add(new HiddenNeuronLayer(numberOfNeuronsPerLayer[i], nextLayerNumberOfInputs));
+			nextLayerNumberOfInputs = numberOfNeuronsPerLayer[i-1];
 		}
+		
+		outputLayer = new OutputNeuronLayer(numberOfNeuronsPerLayer[numberOfNeuronsPerLayer.length - 1], nextLayerNumberOfInputs);
 	}
 	
 	public int getNumberOfInputs() {
@@ -25,10 +32,21 @@ public class NeuralNetwork {
 	}
 	
 	public double[] feed(double[] inputs) {
-		for (NeuronLayer nl : layers) {
+		for (NeuronLayer nl : this.hiddenLayers) {
 			inputs = nl.feed(inputs);
 		}
 		
-		return inputs;
+		return this.outputLayer.feed(inputs);
+	}
+	
+	public void propagateDeltas(double[] expectedOutputs) {
+		this.outputLayer.calculateAndSetDeltas(expectedOutputs);
+		NeuronLayer nextLayer = this.outputLayer;
+		
+		for (int i = this.hiddenLayers.size() - 1; i >= 0; i--) {
+			HiddenNeuronLayer layer = this.hiddenLayers.get(i);
+			layer.calculateAndSetDeltas(nextLayer);
+			nextLayer = layer;
+		}
 	}
 }
