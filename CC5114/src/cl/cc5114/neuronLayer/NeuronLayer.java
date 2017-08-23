@@ -53,6 +53,16 @@ public class NeuronLayer {
 		return deltas;
 	}
 	
+	public double[] getOutputs() {
+		double[] outputs = new double[this.neurons.size()];
+		
+		for(int i = 0; i < this.neurons.size(); i++) {
+			outputs[i] = this.neurons.get(i).getLastOutput();
+		}
+		
+		return outputs;
+	}
+	
 	public double[] feed(double... inputs) {
 		double[] outputs = new double[this.getSize()];
 		
@@ -68,9 +78,15 @@ public class NeuronLayer {
 		
 		for (int i = 0; i < this.neurons.size(); i++) {
 			deltas[i] = this.neurons.get(i).calculateAndSetDelta(errors[i]);
-			
 		}
 		
 		return deltas;
+	}
+	
+	public void updateWeightsAndBias(double[] inputs) {
+		for (int i = 0; i < this.neurons.size(); i++) {
+			this.neurons.get(i).updateWeights(inputs);
+			this.neurons.get(i).updateBias();
+		}
 	}
 }

@@ -11,6 +11,7 @@ public class SigmoidNeuron {
 	private double bias;
 	private double lastOutput;
 	private double delta;
+	private double learningRate;
 	
 	/**
 	 * @param bias The bias of the SigmoidNeuron
@@ -21,6 +22,7 @@ public class SigmoidNeuron {
 		this.bias = bias;
 		this.lastOutput = Double.NaN;
 		this.delta = Double.NaN;
+		this.learningRate = 0.01;
 	}
 	
 	/**
@@ -69,5 +71,19 @@ public class SigmoidNeuron {
 		this.lastOutput = 1 / (1 + Math.exp(-sum));
 		
 		return this.lastOutput;
+	}
+	
+	public double[] updateWeights(double[] inputs) {
+		for (int i = 0; i < inputs.length; i++) {
+			this.weights[i] += this.learningRate * this.delta * inputs[i];
+		}
+		
+		return this.weights.clone();
+	}
+	
+	public double updateBias() {
+		this.bias += this.learningRate * this.delta;
+		
+		return this.bias;
 	}
 }

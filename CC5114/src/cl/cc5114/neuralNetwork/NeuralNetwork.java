@@ -31,6 +31,14 @@ public class NeuralNetwork {
 		return this.numberOfInputs;
 	}
 	
+	public double[] feedAndLearn(double[] inputs, double[] expectedOutputs) {
+		double[] output = this.feed(inputs);
+		this.propagateDeltas(expectedOutputs);
+		this.updateWeightsAndBias(inputs);
+		
+		return output;
+	}
+	
 	public double[] feed(double[] inputs) {
 		for (NeuronLayer nl : this.hiddenLayers) {
 			inputs = nl.feed(inputs);
@@ -48,5 +56,14 @@ public class NeuralNetwork {
 			layer.calculateAndSetDeltas(nextLayer);
 			nextLayer = layer;
 		}
+	}
+	
+	public void updateWeightsAndBias(double[] inputs) {
+		for(int i = 0; i < this.hiddenLayers.size(); i++) {
+			this.hiddenLayers.get(i).updateWeightsAndBias(inputs);
+			inputs = this.hiddenLayers.get(i).getOutputs();
+		}
+		
+		this.outputLayer.updateWeightsAndBias(inputs);
 	}
 }
