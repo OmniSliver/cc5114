@@ -21,7 +21,7 @@ public class NeuralNetwork {
 		
 		for (int i = 0; i < numberOfNeuronsPerLayer.length - 1; i++) {
 			hiddenLayers.add(new HiddenNeuronLayer(numberOfNeuronsPerLayer[i], nextLayerNumberOfInputs));
-			nextLayerNumberOfInputs = numberOfNeuronsPerLayer[i-1];
+			nextLayerNumberOfInputs = numberOfNeuronsPerLayer[i];
 		}
 		
 		outputLayer = new OutputNeuronLayer(numberOfNeuronsPerLayer[numberOfNeuronsPerLayer.length - 1], nextLayerNumberOfInputs);
