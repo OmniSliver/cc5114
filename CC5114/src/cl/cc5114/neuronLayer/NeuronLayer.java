@@ -25,7 +25,13 @@ public class NeuronLayer {
 		this.neurons = new ArrayList<>(layerSize);
 		
 		for (int i = 0; i < layerSize; i++) {
-			this.neurons.add(new SigmoidNeuron(0, new double[numberOfInputs]));
+			double bias = Math.random();
+			double[] weights = new double[numberOfInputs];
+			for (int j = 0; j < weights.length; j++) {
+				weights[j] = Math.random();
+			}
+			
+			this.neurons.add(new SigmoidNeuron(bias, weights));
 		}
 	}
 	
